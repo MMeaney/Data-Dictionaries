@@ -13,12 +13,12 @@ USE [ERIC]
 SET NOCOUNT ON;
 SET ANSI_WARNINGS OFF;
 
-DECLARE @EntityName		NVARCHAR(100)
-DECLARE @ServerName		NVARCHAR(100)
+DECLARE @EntityName	NVARCHAR(100)
+DECLARE @ServerName	NVARCHAR(100)
 DECLARE @DatabaseName	NVARCHAR(100)
 DECLARE @TimeGenerated	DATETIME
 
-SET	@ServerName		= CAST(SERVERPROPERTY('MachineName') AS NVARCHAR(100))
+SET	@ServerName	= CAST(SERVERPROPERTY('MachineName') AS NVARCHAR(100))
 SET	@DatabaseName	= CAST(DB_NAME() AS NVARCHAR(100))
 SET	@TimeGenerated	= GETDATE()
 
@@ -30,37 +30,36 @@ IF  OBJECT_ID('TempDB..#tmpRefTables') IS NOT NULL
 	BEGIN	DROP TABLE #tmpRefTables	END
 
 SELECT DISTINCT
-	SO1.name				 AS [nmTable]
-	, SO1.type				 AS [nmType]
-	, SC1.name				 AS [nmAttribute]
-	, ST1.name				 AS [DataType]
-	, SC1.isnullable		 AS [AllowNulls]
+	SO1.name		 AS [nmTable]
+	, SO1.type		 AS [nmType]
+	, SC1.name		 AS [nmAttribute]
+	, ST1.name		 AS [DataType]
+	, SC1.isnullable	 AS [AllowNulls]
 	, CASE WHEN
 		PK1.name IS NULL 
 			THEN 0
-			ELSE 1	END		 AS [isPKey]
+			ELSE 1	END	 AS [isPKey]
 	, CASE WHEN 	
 		FK1.parent_object_id IS NULL 
 			THEN 0 
-			ELSE 1	END		 AS [isFKey]
+			ELSE 1	END	 AS [isFKey]
 	, RF1.name [nmRefTable]
 	, ISNULL(XP1.value, '')	 AS [Description]
 INTO #tmpRefTables
-FROM sys.sysobjects					SO1
-JOIN sys.syscolumns					SC1	ON	SO1.id			= SC1.id
-JOIN sys.systypes					ST1	ON	SC1.xtype		= ST1.xtype 
-LEFT JOIN (	
-				SELECT  SO2.id
-						, SC2.colid
-						, SC2.name 
-				FROM	sys.syscolumns		SC2
-				JOIN	sys.sysobjects		SO2		ON	SO2.id		 = SC2.id
-				JOIN	sys.sysindexkeys	SI2		ON	SI2.id		 = SO2.id 
-													AND SI2.colid	 = SC2.colid
-				WHERE	SI2.indid = 1
-			)
-									PK1 ON	PK1.id			= SO1.id
-										AND	PK1.colid		= SC1.colid
+FROM sys.sysobjects	SO1
+JOIN sys.syscolumns	SC1	ON	SO1.id			= SC1.id
+JOIN sys.systypes	ST1	ON	SC1.xtype		= ST1.xtype 
+LEFT JOIN (	SELECT 	SO2.id
+			, SC2.colid
+			, SC2.name 
+		FROM	sys.syscolumns		SC2
+		JOIN	sys.sysobjects		SO2	ON	SO2.id		 = SC2.id
+		JOIN	sys.sysindexkeys	SI2	ON	SI2.id		 = SO2.id 
+							AND 	SI2.colid	 = SC2.colid
+		WHERE	SI2.indid = 1
+		)
+			PK1	ON	PK1.id			= SO1.id
+				AND	PK1.colid		= SC1.colid
 LEFT JOIN sys.foreign_key_columns	FK1	ON	SO1.id			= FK1.parent_object_id
 										AND	SC1.colid		= FK1.parent_column_id
 LEFT JOIN sys.objects				RF1	ON	RF1.object_id	= FK1.referenced_object_id 
