@@ -1,0 +1,2896 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ERIC: Data Dictionary</title>
+<meta http-equiv = "X-UA-Compatible" content = "IE=10; IE=9; IE=8; IE=7; IE=EDGE"/>
+<style type = "text/css">
+@media print, screen {
+ a      {color: #0099FF;}
+ body	{background:#FFFFFF; color:#000000; font-family:sans-serif; word-break: break-all;}
+ table  {border-collapse:collapse; border:1px solid #A5A5A5; padding:4px;}
+ th		{background:#757575; padding:4px; border:1px solid #A5A5A5; text-align:left; font-size:13px; color:#FFFFFF;}
+ tr	    {background:#FFFFFF;}
+ td	    {border:1px solid #A5A5A5; padding:4px;}  
+ tfoot  {display:table-row-group;}
+ tfoot .trlinktop td {text-align:right; padding:2px; border:1px solid #FFFFFF;}
+
+ span       {background:#FFFFFF; padding:4px; font-size:14px;}
+ .linktop   {background:#FFFFFF; padding:2px; font-size:11px;}
+	
+ ul.toc_ul  {margin-top:0; padding:1;}
+ ul.dep_ul  {margin-top:0; padding:0;}
+ li         {float:left; width:33%; overflow:hidden;}
+ li a       {display:block; padding:1px; width:auto;}
+ 
+ .reporttitle       {background:#FFFFFF; padding:0px; border:0px; width:auto; border-collapse:separate;}
+ .reporttitlehead   {background:#FFFFFF; padding:2px; border:0px; width:auto; font-size:28px; font-weight:bold; font-style:italic;}
+ .reporttitlebody   {background:#FFFFFF; padding:2px; border:0px; width:auto; font-size:28px; font-weight:bold;}
+ .reporttitleimage  {background:#FFFFFF; padding:0px; border:0px; width:auto; text-align:center;}
+
+ #reporttitle       {background:#F5F5F5; padding:7px; font-size:30px; font-weight:bold; display:inline-block; border:1px solid #A5A5A5;}
+ #reportlinks       {background:#FFFFFF; padding:7px;}
+ #reportdesc1       {background:#FFFFFF; padding:7px; font-size:15px;}
+ #reportdesc2       {background:#FFFFFF; padding:7px; font-size:14px; font-style:italic;}
+  
+ .entitytoc	        {font-size:13px; page-break-before:avoid; page-break-after:always; list-style-type:none; overflow:hidden; width:100%;}
+ .entitytoc li      {float:left; width:25%; overflow:hidden}
+ .entitytoc li a    {display:block; padding:2px; width:auto;}
+ 
+ .dbdetails         {border:0px; width:auto; border-collapse:separate;}
+ .dbdetailsheadtr   {background:#F5F5F5; padding:2px; font-size:16px; font-weight:bold;}
+ .dbdetailsbodytr   {background:#FFFFFF; padding:2px; font-size:14px;}
+
+ .entitydesctbl     {border:0px; width:100%; border-collapse:separate;}
+ .entitydescheadtr  {background:#F5F5F5; padding:2px; font-size:16px; font-style:italic; font-weight:bold;}
+ .entitydesctr      {background:#FFFFFF; padding:2px; font-size:14px;} 
+ .otherentypes	    {background:#FFFFFF; padding:2px; width:110px; font-size:13px; text-align:center;}
+ 
+ .entitydatatbl     {border:1px solid #A5A5A5; padding:4px; page-break-after:left;}
+ .entitydatadiv     {display:inline-block; overflow:hidden;}
+ .entitydatanametd  {background:#F5F5F5; font-size:13px; font-weight:bold;}
+ .entitydatadesctd  {background:#FFFFE0; font-size:13px; font-style:italic;}
+ .entitydatasystd   {background:#FFFFE0; font-size:13px; font-style:italic;}
+ .entitydataviewsth {width:100px;}
+ 
+ .entitydatatr          {font-size:12px;}
+ .entitydataviewtr      {font-size:12px; white-space: pre-wrap;}
+ .entitydatasproctr     {font-size:12px; white-space: pre-wrap;}
+ .entitydatafunctr      {font-size:12px; white-space: pre-wrap;}
+ .entitydataattnametd   {background:#F5F5F5;}
+ 
+ .footheader_dep_table     	{background:#FFEECC;}
+ .footheader_dep_view      	{background:#FFF1D6;}
+ .footheader_dep_function  	{background:#FFF3DB;}
+ .footheader_dep_storedproc	{background:#FFF5E0;} 
+ .footheader_dep_samplerows	{background:#FFF5E0;}
+
+ .footheader_dep_table, .footheader_dep_view, .footheader_dep_function, .footheader_dep_storedproc, .footheader_dep_samplerows
+    {text-align:left; font-size:12px;}
+ 	
+ .footdetail_dep_table, .footdetail_dep_view, .footdetail_dep_function, .footdetail_dep_storedproc, .footdetail_dep_samplerows
+ 	{background:#FFFFFF; text-align:left; font-size:12px;}
+	
+ a:hover                        {color:#161A1D;	background:#F5F5F5;}
+ span:hover                     {color:#161A1D; background:#F5F5F5;}
+ .otherentypes:hover	   		{color:#161A1D; background:#F5F5F5; font-style:italic;}
+ .entitydatatr:hover            {color:#161A1D; background:#F5F5F5;}
+ .footdetail_dep_table:hover    {color:#161A1D; background:#F5F5F5;}  
+ .entitytoc li:hover            {color:#161A1D;}
+ .entitydatadiv:hover           {box-shadow:2px 2px 10px 2px #D6D6D6;}
+}
+
+</style>
+</head>
+ 
+<body>
+
+<table class = "reporttitle">
+    <tr>
+		  <td class = "reporttitlehead">Data Dictionary: </td>
+		  <td class = "reporttitlebody">ERIC</td>
+	 </tr>
+</table>
+
+<div id = "reportlinks">
+	 <span><a href="#entityhasfk">Tables</a></span> | 
+	 <span><a href="#entityviews">Views</a></span> | 
+	 <span><a href="#entitystoredprocedures">Stored Procedures</a></span> | 
+	 <span><a href="#entityfunctions">Functions</a></span>
+</div>
+
+<br />
+
+<table class = "dbdetails">
+    <tr class = "dbdetailsheadtr"><td colspan = "2">Database Details</td></tr>
+    <tr class = "dbdetailsbodytr"><th>Database: </th><td>ERIC</td></tr>
+    <tr class = "dbdetailsbodytr"><th>Server: </th><td>DUBSQL2014</td></tr>
+    <tr class = "dbdetailsbodytr"><th>Generated on: </th><td>Jul 19 2017  9:27PM</td></tr>
+</table>
+
+<br />
+
+
+<div id = "entityhasfk">
+<table class = "entitydesctbl">
+    <tr class = "entitydescheadtr"><td colspan = "2">Tables</td></tr>
+    <tr class = "entitydesctr">
+        <td>Tables within the <i>ERIC</i> database</td><td class = "otherentypes"><a href="#reportlinks">Other entity types</a></td>
+	 </tr>
+</table>
+</div>
+
+<br />
+
+<div class = "entitytoc">
+	 <ul class = "toc_ul">
+		<li><a href="#AccuracyType">AccuracyType</a></li>
+		<li><a href="#Country">Country</a></li>
+		<li><a href="#Instrument">Instrument</a></li>
+		<li><a href="#Laboratory">Laboratory</a></li>
+		<li><a href="#Location">Location</a></li>
+		<li><a href="#LocationType">LocationType</a></li>
+		<li><a href="#Measurement">Measurement</a></li>
+		<li><a href="#measurement_20170118">measurement_20170118</a></li>
+		<li><a href="#MeasurementToSampleTreatment">MeasurementToSampleTreatment</a></li>
+		<li><a href="#Nuclide">Nuclide</a></li>
+		<li><a href="#SampleTreatment">SampleTreatment</a></li>
+		<li><a href="#SampleType">SampleType</a></li>
+		<li><a href="#Source">Source</a></li>
+		<li><a href="#UncertaintyType">UncertaintyType</a></li>
+		<li><a href="#Unit">Unit</a></li>
+		<li><a href="#ValueType">ValueType</a></li>
+ </ul>
+</div>
+
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "AccuracyType">AccuracyType</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Enables obfuscation of the sampling pont. Values are sourced from EASY-PROTEO v4.12 User\'s Manual Section 12.2.1 (Accuracy Type)'
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">accuracyTypeID</td>
+			<td>                                                                                                                                                                     </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">description</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>255</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>AccuracyType</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Location">Location</a></td>
+			<td colspan = "4">accuracyTypeID</td>
+			<td colspan = "4"><i>[Depends on:]</i> accuracyTypeID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>AccuracyType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>AccuracyType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>AccuracyType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>AccuracyType</b>: <i> 
+
+-----------
+4
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "Country">Country</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">countryID</td>
+			<td>                                                                                                                                                                          </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">name</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>100</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>Country</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Location">Location</a></td>
+			<td colspan = "4">countryID</td>
+			<td colspan = "4"><i>[Depends on:]</i> countryID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>Country</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>Country</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>Country</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>Country</b>: <i> 
+
+-----------
+3
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "Instrument">Instrument</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Values are sourced from EASY-PROTEO v4.12 User's Manual Section 12.2.2 (Apparatus Type)
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">instrumentID</td>
+			<td>                                                                                                                                                                       </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">description</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>255</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>Instrument</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Measurement">Measurement</a></td>
+			<td colspan = "4">instrumentID</td>
+			<td colspan = "4"><i>[Depends on:]</i> instrumentID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>Instrument</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>Instrument</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>Instrument</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>Instrument</b>: <i> 
+
+-----------
+30
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "Laboratory">Laboratory</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+This is the laboratory primarily responsible for production of the data. 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">laboratoryID</td>
+			<td>                                                                                                                                                                       </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">name</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>100</td>                  <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">section</td>
+			<td>                                                                                                                                                                            </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>100</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>Laboratory</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Source">Source</a></td>
+			<td colspan = "4">laboratoryID</td>
+			<td colspan = "4"><i>[Depends on:]</i> laboratoryID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>Laboratory</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>Laboratory</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>Laboratory</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>Laboratory</b>: <i> 
+
+-----------
+3
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "Location">Location</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">locationID</td>
+			<td>                                                                                                                                                                         </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>45</td>                   <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">name</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>255</td>                  <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">displayName</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>100</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">nuts</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>45</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">latitude_DEC</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">longitude_DEC</td>
+			<td>                                                                                                                                                                      </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">latitude_IG</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">longitude_IG</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">latitude_ITM</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">longitude_ITM</td>
+			<td>                                                                                                                                                                      </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">catchment</td>
+			<td>                                                                                                                                                                          </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>45</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">heightAboveLand</td>
+			<td>                                                                                                                                                                    </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">heightAboveSea</td>
+			<td>                                                                                                                                                                     </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">countryID</td>
+			<td>                                                                                                                                                                          </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#Country">Country</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">accuracyTypeID</td>
+			<td>                                                                                                                                                                     </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#AccuracyType">AccuracyType</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">locationTypeID</td>
+			<td>                                                                                                                                                                     </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#LocationType">LocationType</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">thirdPartyCode</td>
+			<td>                                                                                                                                                                     </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>50</td>                   <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">comments</td>
+			<td>                                                                                                                                                                           </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>1000</td>                 <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">x_background</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">x_EURDEPStationID</td>
+			<td>                                                                                                                                                                  </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>nvarchar            </td> <td>50</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>Location</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Measurement">Measurement</a></td>
+			<td colspan = "4">locationID</td>
+			<td colspan = "4"><i>[Depends on:]</i> locationID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>Location</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>Location</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>Location</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>Location</b>: <i> 
+
+-----------
+429
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "LocationType">LocationType</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Most locations are monitoring points but may need others, e.g. discharge points.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">locationTypeID</td>
+			<td>                                                                                                                                                                     </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">description</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>45</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>LocationType</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Location">Location</a></td>
+			<td colspan = "4">locationTypeID</td>
+			<td colspan = "4"><i>[Depends on:]</i> locationTypeID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>LocationType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>LocationType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>LocationType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>LocationType</b>: <i> 
+
+-----------
+4
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "Measurement">Measurement</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">measurementID</td>
+			<td>                                                                                                                                                                      </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">locationID</td>
+			<td>                                                                                                                                                                         </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#Location">Location</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">sourceID</td>
+			<td>                                                                                                                                                                           </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#Source">Source</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">sampleTypeID</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#SampleType">SampleType</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">nuclideID</td>
+			<td>                                                                                                                                                                          </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#Nuclide">Nuclide</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">instrumentID</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#Instrument">Instrument</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">beginMeas</td>
+			<td>                                                                                                                                                                          </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>datetime            </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">endMeas</td>
+			<td>                                                                                                                                                                            </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>datetime            </td> <td>8</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">measurementInterval</td>
+			<td>                                                                                                                                                                </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">isMDA</td>
+			<td>                                                                                                                                                                              </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>bit                 </td> <td>1</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">value</td>
+			<td>                                                                                                                                                                              </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">valueUnitID</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#Unit">Unit</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">valueTypeID</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#ValueType">ValueType</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">uncertainty</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">uncertaintyUnitID</td>
+			<td>                                                                                                                                                                  </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">uncertaintyTypeID</td>
+			<td>                                                                                                                                                                  </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#UncertaintyType">UncertaintyType</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">background</td>
+			<td>                                                                                                                                                                         </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">backgroundUnitID</td>
+			<td>                                                                                                                                                                   </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">lastUpdated</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>datetime            </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">depth</td>
+			<td>                                                                                                                                                                              </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">nativeSampleID</td>
+			<td>                                                                                                                                                                     </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">alternativeNativeSampleID</td>
+			<td>                                                                                                                                                          </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">nativeAnalysisID</td>
+			<td>                                                                                                                                                                   </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">comments</td>
+			<td>                                                                                                                                                                           </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>1000</td>                 <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">x_recordCount</td>
+			<td>                                                                                                                                                                      </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">coreHeight</td>
+			<td>                                                                                                                                                                         </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">IsApproved</td>
+			<td>                                                                                                                                                                         </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>bit                 </td> <td>1</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">sampTime</td>
+			<td>                                                                                                                                                                           </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>datetime            </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">DW_ratio</td>
+			<td>                                                                                                                                                                           </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>nvarchar            </td> <td>254</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">VOL_AIR</td>
+			<td>                                                                                                                                                                            </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>real                </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">resultNumber</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>Measurement</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#MeasurementToSampleTreatment">MeasurementToSampleTreatment</a></td>
+			<td colspan = "4">measurementID</td>
+			<td colspan = "4"><i>[Depends on:]</i> measurementID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>Measurement</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>Measurement</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>Measurement</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>Measurement</b>: <i> 
+
+-----------
+1196259
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "measurement_20170118">measurement_20170118</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">measurementID</td>
+			<td>                                                                                                                                                                      </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">locationID</td>
+			<td>                                                                                                                                                                         </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">sourceID</td>
+			<td>                                                                                                                                                                           </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">sampleTypeID</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">nuclideID</td>
+			<td>                                                                                                                                                                          </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">instrumentID</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">beginMeas</td>
+			<td>                                                                                                                                                                          </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>datetime            </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">endMeas</td>
+			<td>                                                                                                                                                                            </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>datetime            </td> <td>8</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">measurementInterval</td>
+			<td>                                                                                                                                                                </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">isMDA</td>
+			<td>                                                                                                                                                                              </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>bit                 </td> <td>1</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">value</td>
+			<td>                                                                                                                                                                              </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">valueUnitID</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">valueTypeID</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">uncertainty</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">uncertaintyUnitID</td>
+			<td>                                                                                                                                                                  </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">uncertaintyTypeID</td>
+			<td>                                                                                                                                                                  </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">background</td>
+			<td>                                                                                                                                                                         </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">backgroundUnitID</td>
+			<td>                                                                                                                                                                   </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">lastUpdated</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>datetime            </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">depth</td>
+			<td>                                                                                                                                                                              </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">nativeSampleID</td>
+			<td>                                                                                                                                                                     </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">alternativeNativeSampleID</td>
+			<td>                                                                                                                                                          </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">nativeAnalysisID</td>
+			<td>                                                                                                                                                                   </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">comments</td>
+			<td>                                                                                                                                                                           </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>1000</td>                 <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">x_recordCount</td>
+			<td>                                                                                                                                                                      </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">coreHeight</td>
+			<td>                                                                                                                                                                         </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>float               </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">IsApproved</td>
+			<td>                                                                                                                                                                         </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>bit                 </td> <td>1</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">sampTime</td>
+			<td>                                                                                                                                                                           </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>datetime            </td> <td>8</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">DW_ratio</td>
+			<td>                                                                                                                                                                           </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>nvarchar            </td> <td>254</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">VOL_AIR</td>
+			<td>                                                                                                                                                                            </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>real                </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">resultNumber</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>measurement_20170118</b><i>:
+
+-----------
+0
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>measurement_20170118</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>measurement_20170118</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>measurement_20170118</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>measurement_20170118</b>: <i> 
+
+-----------
+1033371
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "MeasurementToSampleTreatment">MeasurementToSampleTreatment</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">measurementID</td>
+			<td>                                                                                                                                                                      </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#Measurement">Measurement</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">sampleTreatmentID</td>
+			<td>                                                                                                                                                                  </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#SampleTreatment">SampleTreatment</a></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>MeasurementToSampleTreatment</b><i>:
+
+-----------
+0
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>MeasurementToSampleTreatment</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>MeasurementToSampleTreatment</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>MeasurementToSampleTreatment</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>MeasurementToSampleTreatment</b>: <i> 
+
+-----------
+1196708
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "Nuclide">Nuclide</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Nuclide (e.g. CS-137, I-131) or nuclide category (e.g. T-BETA, T-GAMMA etc). Values are sourced from EASY-PROTEO v4.12 User's Manual Section 12.2.5 (Nuclide/Nuclide Category)
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">nuclideID</td>
+			<td>                                                                                                                                                                          </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>45</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">description</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>255</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>Nuclide</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Measurement">Measurement</a></td>
+			<td colspan = "4">nuclideID</td>
+			<td colspan = "4"><i>[Depends on:]</i> nuclideID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>Nuclide</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>Nuclide</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>Nuclide</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>Nuclide</b>: <i> 
+
+-----------
+164
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "SampleTreatment">SampleTreatment</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Samples can have more than one treatments. Values are sourced from EASY-PROTEO v4.12 User's Manual Section 12.2.6 (Sample Treatment). 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">sampleTreatmentID</td>
+			<td>                                                                                                                                                                  </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">description</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>255</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>SampleTreatment</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#MeasurementToSampleTreatment">MeasurementToSampleTreatment</a></td>
+			<td colspan = "4">sampleTreatmentID</td>
+			<td colspan = "4"><i>[Depends on:]</i> sampleTreatmentID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>SampleTreatment</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>SampleTreatment</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>SampleTreatment</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>SampleTreatment</b>: <i> 
+
+-----------
+28
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "SampleType">SampleType</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Values are sourced from EASY-PROTEO v4.12 User's Manual Section 12.2.7 (Sample Type)
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">sampleTypeID</td>
+			<td>                                                                                                                                                                       </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">description</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>255</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>SampleType</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Measurement">Measurement</a></td>
+			<td colspan = "4">sampleTypeID</td>
+			<td colspan = "4"><i>[Depends on:]</i> sampleTypeID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>SampleType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>SampleType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>SampleType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>SampleType</b>: <i> 
+
+-----------
+823
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "Source">Source</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+The project or dataset from which the data is sourced, e.g. the 2010 RPII Monitoring programme or a UCD research project.
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">sourceID</td>
+			<td>                                                                                                                                                                           </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">laboratoryID</td>
+			<td>                                                                                                                                                                       </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>1</td>                    <td>int                 </td> <td>4</td>                    <td>1</td>                    <td></td>                                                   <td></td>                                                   <td><a href="#Laboratory">Laboratory</a></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>45</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">name</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>45</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">description</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>text                </td> <td>16</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>Source</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Measurement">Measurement</a></td>
+			<td colspan = "4">sourceID</td>
+			<td colspan = "4"><i>[Depends on:]</i> sourceID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>Source</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>Source</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>Source</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>Source</b>: <i> 
+
+-----------
+105
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "UncertaintyType">UncertaintyType</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Values are sourced from EASY-PROTEO v4.12 User's Manual Section 12.2.3 (Error Type). 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">uncertaintyTypeID</td>
+			<td>                                                                                                                                                                  </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">description</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>255</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>UncertaintyType</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Measurement">Measurement</a></td>
+			<td colspan = "4">uncertaintyTypeID</td>
+			<td colspan = "4"><i>[Depends on:]</i> uncertaintyTypeID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>UncertaintyType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>UncertaintyType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>UncertaintyType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>UncertaintyType</b>: <i> 
+
+-----------
+8
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "Unit">Unit</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Values are sourced from EASY-PROTEO v4.12 User's Manual Section 12.2.4 (Measuring Unit). 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">UnitID</td>
+			<td>                                                                                                                                                                             </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">description</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>255</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>Unit</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Measurement">Measurement</a></td>
+			<td colspan = "4">valueUnitID</td>
+			<td colspan = "4"><i>[Depends on:]</i> UnitID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>Unit</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>Unit</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>Unit</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>Unit</b>: <i> 
+
+-----------
+75
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th colspan = "1", white-space: nowrap><b>Table Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "9"><div id = "ValueType">ValueType</div></td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i><b>Table Description: </b></i></th>
+				<td class = "entitydatadesctd", colspan = "9">
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Values are sourced from EASY-PROTEO v4.12 User's Manual Section 12.2.8 (Value Type). 
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+		</td>
+	 </tr>
+	<tr>
+		  <th colspan = "1", white-space: nowrap><i>Table System: </i></th>
+				<td class = "entitydatasystd", colspan = "9">
+
+--------------------------------------------------
+
+		</td>
+	 </tr>
+	 <tr>
+
+		  <th>Column Name</th>
+		  <th>Description</th>
+		  <th>PK</th>
+		  <th>FK</th>
+		  <th>Data Type</th>
+		  <th>Size</th>
+		  <th>Null</th>
+		  <th>Default</th>
+		  <th>System</th>
+		  <th>FK Dependencies</th>
+	 </tr>
+</thead>
+
+<tbody>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------- ----------------------------------------------------------- ----------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">valueTypeID</td>
+			<td>                                                                                                                                                                        </td>
+			<td>1</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>int                 </td> <td>4</td>                    <td>0</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">code</td>
+			<td>                                                                                                                                                                               </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>10</td>                   <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+	<tr class = "entitydatatr">		<td class = "entitydataattnametd">description</td>
+			<td>                                                                                                                                                                        </td>
+			<td>0</td>                                                                                                                                                                                                                                             <td>0</td>                    <td>varchar             </td> <td>255</td>                  <td>1</td>                    <td></td>                                                   <td></td>                                                   <td></td></tr>
+
+</tbody>
+<tfoot class = "dependencies">
+ <tr class = "footheader_dep_table">
+		  <td colspan = "10"><i><b>Tables</b> in</i> ERIC <i>dependent on </i><b>ValueType</b><i>:
+
+-----------
+1
+
+</i></td>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	<tr class = "footdetail_dep_table">
+		<td colspan = "2"><a href="#Measurement">Measurement</a></td>
+			<td colspan = "4">valueTypeID</td>
+			<td colspan = "4"><i>[Depends on:]</i> valueTypeID</td>
+		</tr>
+
+ <tr class = "footheader_dep_view">
+		  <td colspan = "10"><i><b>Views</b> in</i> ERIC <i>dependent on </i><b>ValueType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_function">
+		  <td colspan = "10"><i> 
+ <b>Functions</b> in</i> ERIC <i>dependent on </i><b>ValueType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_storedproc">
+		  <td colspan = "10"><i> 
+ <b>Stored Procedures</b> in</i> ERIC <i>dependent on </i><b>ValueType</b><i>:
+
+-----------
+0
+
+		</i></td>
+	</tr>
+ <tr class = "footheader_dep_samplerows">
+		  <td colspan = "10"><b><i>Records</i></b> in <b>ValueType</b>: <i> 
+
+-----------
+18
+
+		 </i></td>
+	 </tr>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span>		</td>
+	</tr>
+</tfoot>
+ 
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+
+<div id = "entityviews">
+<table class = "entitydesctbl">
+    <tr class = "entitydescheadtr"><td colspan = "2">Views</td></tr>
+    <tr class = "entitydesctr">
+        <td>The following section lists all VIEWS within the <i>ERIC</i> database</td><td class = "otherentypes"><a href="#reportlinks">Other entity types</a></td>
+	 </tr>
+</table>
+</div>
+
+<br />
+
+<div class = "entitytoc">
+	 <ul class = "toc_ul">
+		<li><a href="#CollateAllERICRecordsIG">CollateAllERICRecordsIG</a></li>
+		<li><a href="#CollateAllERICRecordsITM">CollateAllERICRecordsITM</a></li>
+		<li><a href="#getDataBySampleTypeITM">getDataBySampleTypeITM</a></li>
+		<li><a href="#getLocationsITMMarine">getLocationsITMMarine</a></li>
+		<li><a href="#getLocationsWGS84GammaDoseRate">getLocationsWGS84GammaDoseRate</a></li>
+		<li><a href="#getLocationsWGS84Marine">getLocationsWGS84Marine</a></li>
+		<li><a href="#getTableDataMilk">getTableDataMilk</a></li>
+		<li><a href="#getTableDataMixedDiet">getTableDataMixedDiet</a></li>
+		<li><a href="#getTableDataOfflineAir">getTableDataOfflineAir</a></li>
+		<li><a href="#testing_view">testing_view</a></li>
+		<li><a href="#testing_view_wgs84">testing_view_wgs84</a></li>
+ </ul>
+</div>
+
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "CollateAllERICRecordsIG">CollateAllERICRecordsIG</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "CollateAllERICRecordsITM">CollateAllERICRecordsITM</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "getDataBySampleTypeITM">getDataBySampleTypeITM</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "getLocationsITMMarine">getLocationsITMMarine</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "getLocationsWGS84GammaDoseRate">getLocationsWGS84GammaDoseRate</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "getLocationsWGS84Marine">getLocationsWGS84Marine</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "getTableDataMilk">getTableDataMilk</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "getTableDataMixedDiet">getTableDataMixedDiet</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "getTableDataOfflineAir">getTableDataOfflineAir</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "testing_view">testing_view</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>View Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "testing_view_wgs84">testing_view_wgs84</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">View Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+NULL
+
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+
+<div id = "entitystoredprocedures">
+<table class = "entitydesctbl">
+    <tr class = "entitydescheadtr"><td colspan = "2">Stored Procedures</td></tr>
+    <tr class = "entitydesctr">
+        <td>The following section lists all STORED PROCEDURES within the <i>ERIC</i> database</td><td class = "otherentypes"><a href="#reportlinks">Other entity types</a></td>
+	 </tr>
+</table>
+</div>
+
+<br />
+
+<div class = "entitytoc">
+	 <ul class = "toc_ul">
+		<li><a href="#sp_alterdiagram">sp_alterdiagram</a></li>
+		<li><a href="#sp_creatediagram">sp_creatediagram</a></li>
+		<li><a href="#sp_dropdiagram">sp_dropdiagram</a></li>
+		<li><a href="#sp_helpdiagramdefinition">sp_helpdiagramdefinition</a></li>
+		<li><a href="#sp_helpdiagrams">sp_helpdiagrams</a></li>
+		<li><a href="#sp_renamediagram">sp_renamediagram</a></li>
+ </ul>
+</div>
+
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>Stored Procedure Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "sp_alterdiagram">sp_alterdiagram</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">Stored Procedure Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+	<tr class = "entitydatasproctr">
+		<td colspan = "2"><pre><code>
+Msg 15197, Level 16, State 1, Procedure sp_helptext, Line 107 [Batch Start Line 0]
+There is no text for object 'sp_alterdiagram'.
+		</code></pre></td>
+	</tr>
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>Stored Procedure Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "sp_creatediagram">sp_creatediagram</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">Stored Procedure Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+	<tr class = "entitydatasproctr">
+		<td colspan = "2"><pre><code>
+Msg 15197, Level 16, State 1, Procedure sp_helptext, Line 107 [Batch Start Line 0]
+There is no text for object 'sp_creatediagram'.
+		</code></pre></td>
+	</tr>
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>Stored Procedure Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "sp_dropdiagram">sp_dropdiagram</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">Stored Procedure Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+	<tr class = "entitydatasproctr">
+		<td colspan = "2"><pre><code>
+Msg 15197, Level 16, State 1, Procedure sp_helptext, Line 107 [Batch Start Line 0]
+There is no text for object 'sp_dropdiagram'.
+		</code></pre></td>
+	</tr>
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>Stored Procedure Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "sp_helpdiagramdefinition">sp_helpdiagramdefinition</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">Stored Procedure Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+	<tr class = "entitydatasproctr">
+		<td colspan = "2"><pre><code>
+Msg 15197, Level 16, State 1, Procedure sp_helptext, Line 107 [Batch Start Line 0]
+There is no text for object 'sp_helpdiagramdefinition'.
+		</code></pre></td>
+	</tr>
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>Stored Procedure Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "sp_helpdiagrams">sp_helpdiagrams</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">Stored Procedure Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+	<tr class = "entitydatasproctr">
+		<td colspan = "2"><pre><code>
+Msg 15197, Level 16, State 1, Procedure sp_helptext, Line 107 [Batch Start Line 0]
+There is no text for object 'sp_helpdiagrams'.
+		</code></pre></td>
+	</tr>
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>Stored Procedure Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "sp_renamediagram">sp_renamediagram</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">Stored Procedure Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+	<tr class = "entitydatasproctr">
+		<td colspan = "2"><pre><code>
+Msg 15197, Level 16, State 1, Procedure sp_helptext, Line 107 [Batch Start Line 0]
+There is no text for object 'sp_renamediagram'.
+		</code></pre></td>
+	</tr>
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+
+
+<div id = "entityfunctions">
+<table class = "entitydesctbl">
+    <tr class = "entitydescheadtr"><td colspan = "2">Functions</td></tr>
+    <tr class = "entitydesctr">
+        <td>The following section lists all FUNCTIONS within the <i>ERIC</i> database</td><td class = "otherentypes"><a href="#reportlinks">Other entity types</a></td>
+	 </tr>
+</table>
+</div>
+
+<br />
+
+<div class = "entitytoc">
+	 <ul class = "toc_ul">
+		<li><a href="#fn_diagramobjects">fn_diagramobjects</a></li>
+ </ul>
+</div>
+
+<br />
+<br />
+
+<div class = "entitydatadiv">
+<table id = "" class = "entitydatatbl">
+<thead>
+	 <tr>
+		  <th class = "entitydataviewsth" colspan = "1", white-space: nowrap><b>Function Name: </b></th>
+		  <td class = "entitydatanametd", colspan = "1"><div id = "fn_diagramobjects">fn_diagramobjects</div></td>
+	 </tr>
+	<tr>
+			<th colspan = "2">Function Definition</th>
+	 </tr>
+</thead>
+ 
+<tbody>
+
+	<tr class = "entitydatafunctr">
+		<td colspan = "2"><pre><code>
+Msg 15197, Level 16, State 1, Procedure sp_helptext, Line 107 [Batch Start Line 0]
+There is no text for object 'fn_diagramobjects'.
+		</code></pre></td>
+	</tr>
+</tbody>
+<tfoot>
+	<tr class = "trlinktop">
+		<td colspan = "10"><span class = "linktop"><a href="#reportlinks">[Top]</a></span></td>
+	</tr>
+</tfoot>
+</table>
+</div>
+<br />
+<br />
+<br />
+<br />
+</body>
+</html>
